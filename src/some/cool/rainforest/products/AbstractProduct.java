@@ -85,6 +85,7 @@ public abstract class AbstractProduct implements ICartItem {
 	
 	public void resetReducedCost() {
 		this._reducedCost = this._cost;
+		this._appliedCoupons.clear();
 	}
 	
 	public void addAppliedCoupon(ICoupon coupon) {
@@ -110,6 +111,4 @@ public abstract class AbstractProduct implements ICartItem {
 	public void setPreviousCartItem(ICartItem previousCartItem) {
 		this._previousCartItem = previousCartItem;
 	}
-	
-	public abstract void removeAppliedCoupon(ICoupon coupon);
 }

@@ -3,6 +3,7 @@
  */
 package some.cool.rainforest.coupons;
 
+import some.cool.rainforest.cart.CartLedger;
 import some.cool.rainforest.cart.ICartItem;
 
 /**
@@ -11,4 +12,5 @@ import some.cool.rainforest.cart.ICartItem;
  */
 public interface ICoupon extends ICartItem{
 
+	public String applyCoupon(CartLedger ledger);
 }
