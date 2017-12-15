@@ -1,16 +1,20 @@
-/**
- * 
- */
 package some.cool.rainforest.cart;
 
 /**
- * @author harry
+ * @author Harish Prakash (harry)
  *
  */
+
+//TODO Add comments for javadoc
 public abstract class AbstractCartItem {
 
 	private AbstractCartItem _previousCartItem;
 	private AbstractCartItem _nextCartItem;
+	
+	protected AbstractCartItem() {
+		_previousCartItem = null;
+		_nextCartItem = null;
+	}
 
 	public final AbstractCartItem getNextCartItem() {
 		return _nextCartItem;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package some.cool.rainforest.products;
 
 import java.util.ArrayList;
@@ -11,9 +8,11 @@ import some.cool.rainforest.cart.AbstractCartItem;
 import some.cool.rainforest.coupons.AbstractCoupon;
 
 /**
- * @author harry
+ * @author Harish Prakash (harry)
  *
  */
+
+// TODO Add comments for javadoc
 public abstract class AbstractProduct extends AbstractCartItem {
 	
 	protected float _cost;
@@ -26,11 +25,6 @@ public abstract class AbstractProduct extends AbstractCartItem {
 	private ArrayList<AbstractCoupon> _appliedCoupons;
 	
 	protected AbstractProduct(float cost, String title) {
-		
-		this.initialize(cost, title);
-	}
-	
-	private void initialize(float cost, String title) {
 		
 		this._cost = cost;
 		this._reducedCost = cost;
@@ -56,16 +50,10 @@ public abstract class AbstractProduct extends AbstractCartItem {
 		this._description = description;
 	}
 
-	/**
-	 * @return the _manufacturer
-	 */
 	public String getManufacturer() {
 		return _manufacturer;
 	}
 
-	/**
-	 * @param manufacturer the _manufacturer to set
-	 */
 	public void setManufacturer(String manufacturer) {
 		this._manufacturer = manufacturer;
 	}

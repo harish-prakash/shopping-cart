@@ -1,19 +1,16 @@
-/**
- * 
- */
 package some.cool.rainforest.coupons;
 
 import some.cool.rainforest.cart.AbstractCartItem;
 
 /**
- * @author harry
+ * @author Harish Prakash (harry)
  *
  */
-public abstract class AbstractCoupon extends AbstractCartItem {
 
-	/**
-	 * 
-	 */
+//TODO Add comments for javadoc
+public abstract class AbstractCoupon extends AbstractCartItem {
+	
+	protected AbstractCoupon() {}
 	
 	public abstract String applyCoupon(AbstractCartItem firstItem);
 
