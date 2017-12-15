@@ -5,3 +5,6 @@
 - Cart Ledger
 - Inversion of Control (IoC)
 - Separation of Concerns (SoC)
+
+# Case study
+- Ask types of coupons
