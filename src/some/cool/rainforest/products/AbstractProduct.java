@@ -7,34 +7,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import some.cool.rainforest.cart.ICartItem;
-import some.cool.rainforest.coupons.ICoupon;
+import some.cool.rainforest.cart.AbstractCartItem;
+import some.cool.rainforest.coupons.AbstractCoupon;
 
 /**
  * @author harry
  *
  */
-public abstract class AbstractProduct implements ICartItem {
+public abstract class AbstractProduct extends AbstractCartItem {
 	
-	private float _cost;
-	private String _title;
-	private String _description;
-	private String _manufacturer;
-	private HashMap<String, String> _otherInformation;
+	protected float _cost;
+	protected String _title;
+	protected String _description;
+	protected String _manufacturer;
+	protected HashMap<String, String> _otherInformation;
 	
 	private float _reducedCost;
-	private ArrayList<ICoupon> _appliedCoupons;
-	
-	private ICartItem _previousCartItem;
-	private ICartItem _nextCartItem;
+	private ArrayList<AbstractCoupon> _appliedCoupons;
 	
 	protected AbstractProduct(float cost, String title) {
+		
+		this.initialize(cost, title);
+	}
+	
+	private void initialize(float cost, String title) {
+		
 		this._cost = cost;
 		this._reducedCost = cost;
 		this._title = title;
 		
 		_otherInformation = new HashMap<String, String>();
-		_appliedCoupons = new ArrayList<ICoupon>();
+		_appliedCoupons = new ArrayList<AbstractCoupon>();		
 	}
 	
 	public float getCost() {
@@ -67,48 +70,32 @@ public abstract class AbstractProduct implements ICartItem {
 		this._manufacturer = manufacturer;
 	}
 	
-	public String setInformation(String label, String details) {
-		return _otherInformation.put(label, details);
-	}
-	
 	public String getInformation(String label) {
 		return _otherInformation.get(label);
 	}
 	
-	public float getReducedCost() {
+	public String setInformation(String label, String details) {
+		return _otherInformation.put(label, details);
+	}
+	
+	public final float getReducedCost() {
 		return _reducedCost;
 	}
 	
-	public void setReducedCost(float cost) {
+	public final void setReducedCost(float cost) {
 		this._reducedCost = cost;
 	}
 	
-	public void resetReducedCost() {
+	public final void resetReducedCostAndCoupons() {
 		this._reducedCost = this._cost;
 		this._appliedCoupons.clear();
 	}
 	
-	public void addAppliedCoupon(ICoupon coupon) {
+	public final void addAppliedCoupon(AbstractCoupon coupon) {
 		this._appliedCoupons.add(coupon);
 	}
 	
-	public List<ICoupon> getAppliedCoupons() {
+	public final List<AbstractCoupon> getAppliedCoupons() {
 		return this._appliedCoupons;
-	}
-	
-	public ICartItem getNextCartItem() {
-		return _nextCartItem;
-	}
-	
-	public void setNextCartItem(ICartItem nextCartItem) {
-		this._nextCartItem = nextCartItem;
-	}
-	
-	public ICartItem getPreviousCartItem() {
-		return _previousCartItem;
-	}
-	
-	public void setPreviousCartItem(ICartItem previousCartItem) {
-		this._previousCartItem = previousCartItem;
 	}
 }
