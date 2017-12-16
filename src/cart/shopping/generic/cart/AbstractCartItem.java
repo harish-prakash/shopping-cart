@@ -1,4 +1,4 @@
-package some.cool.rainforest.cart;
+package cart.shopping.generic.cart;
 
 /**
  * @author Harish Prakash (harry)
@@ -8,27 +8,27 @@ package some.cool.rainforest.cart;
 //TODO Add comments for javadoc
 public abstract class AbstractCartItem {
 
-	private AbstractCartItem _previousCartItem;
-	private AbstractCartItem _nextCartItem;
+	private AbstractCartItem previousCartItem;
+	private AbstractCartItem nextCartItem;
 	
 	protected AbstractCartItem() {
-		_previousCartItem = null;
-		_nextCartItem = null;
+		previousCartItem = null;
+		nextCartItem = null;
 	}
 
 	public final AbstractCartItem getNextCartItem() {
-		return _nextCartItem;
+		return nextCartItem;
 	}
 
 	public final void setNextCartItem(AbstractCartItem nextCartItem) {
-		this._nextCartItem = nextCartItem;
+		this.nextCartItem = nextCartItem;
 	}
 
 	public final AbstractCartItem getPreviousCartItem() {
-		return _previousCartItem;
+		return previousCartItem;
 	}
 
 	public final void setPreviousCartItem(AbstractCartItem previousCartItem) {
-		this._previousCartItem = previousCartItem;
+		this.previousCartItem = previousCartItem;
 	}
 }

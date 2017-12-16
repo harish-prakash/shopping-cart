@@ -1,4 +1,4 @@
-package some.cool.rainforest;
+package cart.shopping.generic;
 
 /**
  * @author Harish Prakash (harry)

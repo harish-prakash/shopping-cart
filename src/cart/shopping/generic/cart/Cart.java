@@ -1,19 +1,19 @@
-package some.cool.rainforest.cart;
+package cart.shopping.generic.cart;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import some.cool.rainforest.coupons.AbstractCoupon;
-import some.cool.rainforest.products.AbstractProduct;
+import cart.shopping.generic.coupons.AbstractCoupon;
+import cart.shopping.generic.products.AbstractProduct;
 
 //TODO Add comments for javadoc
 public class Cart {
 
-	private AbstractCartItem _firstItem;
-	private AbstractCartItem _lastItem;
+	private AbstractCartItem firstItem;
+	private AbstractCartItem lastItem;
 
-	private ArrayList<AbstractProduct> _cartProducts;
-	private ArrayList<AbstractCoupon> _cartCoupons;
+	private ArrayList<AbstractProduct> cartProducts;
+	private ArrayList<AbstractCoupon> cartCoupons;
 
 	private Cart() {
 		initialize();
@@ -21,27 +21,27 @@ public class Cart {
 
 	private void initialize() {
 
-		_firstItem = null;
-		_lastItem = null;
+		this.firstItem = null;
+		this.lastItem = null;
 
-		_cartProducts = new ArrayList<AbstractProduct>();
-		_cartCoupons = new ArrayList<AbstractCoupon>();
+		this.cartProducts = new ArrayList<AbstractProduct>();
+		this.cartCoupons = new ArrayList<AbstractCoupon>();
 	}
 
 	public AbstractCartItem getFirstItem() {
-		return _firstItem;
+		return firstItem;
 	}
 
 	private void setFirstItem(AbstractCartItem firstItem) {
-		this._firstItem = firstItem;
+		this.firstItem = firstItem;
 	}
 
 	private AbstractCartItem getLastItem() {
-		return _lastItem;
+		return lastItem;
 	}
 
 	private void setLastItem(AbstractCartItem lastItem) {
-		this._lastItem = lastItem;
+		this.lastItem = lastItem;
 	}
 
 	public void addCartItem(AbstractCartItem item) {
@@ -63,28 +63,29 @@ public class Cart {
 	}
 
 	private void addProduct(AbstractProduct product) {
-		_cartProducts.add(product);
+		this.cartProducts.add(product);
 	}
 
 	private void addCoupon(AbstractCoupon coupon) {
-		_cartCoupons.add(coupon);
+		this.cartCoupons.add(coupon);
 	}
 
+	// TODO consider potential deadlock
 	public List<AbstractProduct> getProducts() {
 
-		for (AbstractProduct product : _cartProducts) {
+		for (AbstractProduct product : cartProducts) {
 			product.resetReducedCostAndCoupons();
 		}
 
 		for (AbstractCoupon coupon : getCoupons()) {
-			coupon.applyCoupon(getFirstItem());
+			coupon.applyCoupon(getFirstItem(), cartProducts, getCoupons());
 		}
 
-		return _cartProducts;
+		return cartProducts;
 	}
 
 	public List<AbstractCoupon> getCoupons() {
-		return _cartCoupons;
+		return cartCoupons;
 	}
 
 	public float getCartTotal() {
