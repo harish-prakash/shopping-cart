@@ -6,7 +6,6 @@ import java.util.List;
 import cart.shopping.generic.coupons.AbstractCoupon;
 import cart.shopping.generic.products.AbstractProduct;
 
-//TODO Add comments for javadoc
 public class Cart {
 
 	private AbstractCartItem firstItem;
@@ -16,10 +15,6 @@ public class Cart {
 	private ArrayList<AbstractCoupon> cartCoupons;
 
 	private Cart() {
-		initialize();
-	}
-
-	private void initialize() {
 
 		this.firstItem = null;
 		this.lastItem = null;
@@ -45,6 +40,10 @@ public class Cart {
 	}
 
 	public void addCartItem(AbstractCartItem item) {
+
+		if (item == null)
+			return;
+
 		if (getFirstItem() == null) {
 			setFirstItem(item);
 			setLastItem(item);
@@ -54,12 +53,17 @@ public class Cart {
 			getLastItem().setNextCartItem(item);
 			item.setPreviousCartItem(getLastItem());
 			setLastItem(item);
-
-			if (item instanceof AbstractProduct)
-				addProduct((AbstractProduct) item);
-			else // Consider using else if or just if to accommodate other types in the future
-				addCoupon((AbstractCoupon) item);
 		}
+
+		if (item instanceof AbstractProduct)
+			addProduct((AbstractProduct) item);
+		else
+			addCoupon((AbstractCoupon) item);
+	}
+
+	public void addCartItems(List<AbstractCartItem> items) {
+		for (AbstractCartItem item : items)
+			addCartItem(item);
 	}
 
 	private void addProduct(AbstractProduct product) {
@@ -70,7 +74,6 @@ public class Cart {
 		this.cartCoupons.add(coupon);
 	}
 
-	// TODO consider potential deadlock
 	public List<AbstractProduct> getProducts() {
 
 		for (AbstractProduct product : cartProducts) {
@@ -97,6 +100,11 @@ public class Cart {
 		}
 
 		return total;
+	}
+
+	public static Cart initialize() {
+		Cart cart = new Cart();
+		return cart;
 	}
 
 }
