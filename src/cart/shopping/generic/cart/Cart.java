@@ -39,7 +39,7 @@ public class Cart {
 		this.lastItem = lastItem;
 	}
 
-	public void addCartItem(AbstractCartItem item) {
+	public void addCartItems(AbstractCartItem item) {
 
 		if (item == null)
 			return;
@@ -63,7 +63,7 @@ public class Cart {
 
 	public void addCartItems(List<AbstractCartItem> items) {
 		for (AbstractCartItem item : items)
-			addCartItem(item);
+			addCartItems(item);
 	}
 
 	private void addProduct(AbstractProduct product) {
@@ -81,7 +81,7 @@ public class Cart {
 		}
 
 		for (AbstractCoupon coupon : getCoupons()) {
-			coupon.applyCoupon(getFirstItem(), cartProducts, getCoupons());
+			coupon.validateAndApplyCoupon(getFirstItem(), cartProducts, getCoupons());
 		}
 
 		return cartProducts;

@@ -8,3 +8,6 @@
 
 # Case study
 - Ask types of coupons
+
+# Fail cases
+- $$ off whole cart

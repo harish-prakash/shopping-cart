@@ -1,11 +1,5 @@
 package cart.shopping.generic.cart;
 
-/**
- * @author Harish Prakash (harry)
- *
- */
-
-//TODO Add comments for javadoc
 public abstract class AbstractCartItem {
 
 	private AbstractCartItem previousCartItem;

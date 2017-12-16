@@ -4,14 +4,13 @@ import java.util.List;
 import java.util.UUID;
 
 import cart.shopping.generic.cart.AbstractCartItem;
-import cart.shopping.generic.exceptions.ShoppingCartException;
 import cart.shopping.generic.products.AbstractProduct;
 import cart.shopping.generic.products.ProductJeans;
 
 public class CouponJeansThreeForTwo extends AbstractCoupon {
 
-	private CouponJeansThreeForTwo(String title, String description) {
-		super(title, description);
+	private CouponJeansThreeForTwo(String title) {
+		super(title);
 	}
 
 	@Override
@@ -21,25 +20,10 @@ public class CouponJeansThreeForTwo extends AbstractCoupon {
 	}
 
 	@Override
-	public void applyCoupon(AbstractCartItem firstItem, List<AbstractProduct> cartProducts,
-			List<AbstractCoupon> cartCoupons) {
+	public void applyCoupon(AbstractCartItem firstItem, List<AbstractProduct> cartProducts, List<AbstractCoupon> cartCoupons) {
 
 		AbstractCartItem item = firstItem;
 		int countValidProductsNotCredited = 0;
-
-		if (!isReusable()) {
-
-			int countCouponUse = 0;
-			for (AbstractCoupon coupon : cartCoupons) {
-
-				if (coupon instanceof CouponJeansThreeForTwo)
-					countCouponUse++;
-			}
-
-			if (countCouponUse > 1) {
-				throw new ShoppingCartException("Jeans Three for two coupon cannot be used more than once");
-			}
-		}
 
 		while (item != null) {
 
@@ -48,6 +32,7 @@ public class CouponJeansThreeForTwo extends AbstractCoupon {
 				if (countValidProductsNotCredited == 2) {
 					countValidProductsNotCredited = 0;
 					((ProductJeans) item).setReducedCost(0);
+					((ProductJeans) item).addAppliedCoupon(this);
 				}
 
 				else {
@@ -61,9 +46,7 @@ public class CouponJeansThreeForTwo extends AbstractCoupon {
 
 	public static AbstractCartItem initialize() {
 
-		CouponJeansThreeForTwo coupon = new CouponJeansThreeForTwo("Buy two Jeans and get the third free",
-				"Buy two Jeans and get the third free");
-		coupon.setReusable(false);
+		CouponJeansThreeForTwo coupon = new CouponJeansThreeForTwo("Buy two Jeans and get the third free");
 		return coupon;
 	}
 }

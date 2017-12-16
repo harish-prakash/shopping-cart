@@ -7,13 +7,6 @@ import java.util.List;
 import cart.shopping.generic.cart.AbstractCartItem;
 import cart.shopping.generic.coupons.AbstractCoupon;
 
-/**
- * @author Harish Prakash (harry)
- *
- */
-
-// TODO Add comments for javadoc
-// TODO implement product types. Product types should allow easy creation and multiple creation
 public abstract class AbstractProduct extends AbstractCartItem {
 	
 	protected float cost;
