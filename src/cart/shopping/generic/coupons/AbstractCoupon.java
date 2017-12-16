@@ -6,28 +6,19 @@ import java.util.UUID;
 import cart.shopping.generic.cart.AbstractCartItem;
 import cart.shopping.generic.products.AbstractProduct;
 
-/**
- * @author Harish Prakash (harry)
- *
- */
-
-//TODO Add comments for javadoc
 public abstract class AbstractCoupon extends AbstractCartItem {
 	
-	private UUID couponID;
 	private String title;
 	private String description;
+	private boolean reusable;
 	
 	protected AbstractCoupon(String title, String description) {
-		
-		this.couponID = UUID.randomUUID();
+
 		this.title = title;
 		this.description = description;
 	}
 	
-	public UUID getCouponID() {
-		return couponID;
-	}
+	public abstract UUID getCouponID();
 
 	public String getTitle() {
 		return title;
@@ -44,8 +35,19 @@ public abstract class AbstractCoupon extends AbstractCartItem {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public boolean isReusable() {
+		return reusable;
+	}
 
-	public abstract String applyCoupon(AbstractCartItem firstItem, List<AbstractProduct> cartProducts, List<AbstractCoupon> cartCoupons);
-	// TODO Implement coupon types
+	public void setReusable(boolean reusable) {
+		this.reusable = reusable;
+	}
+
+	public boolean isEqual(AbstractCoupon coupon) {
+		return getCouponID().compareTo(coupon.getCouponID()) == 0;
+	}
+
+	public abstract void applyCoupon(AbstractCartItem firstItem, List<AbstractProduct> cartProducts, List<AbstractCoupon> cartCoupons);
 
 }
