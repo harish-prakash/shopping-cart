@@ -14,6 +14,7 @@ public class CouponDollarsOffNthProductType extends AbstractCoupon {
 	private int threshold;
 
 	// TODO report bug
+	// TODO review other coupons and confirm private variables are not modified
 	public CouponDollarsOffNthProductType(String title, Class<?> productType, float discountDollars, int threshold) {
 		super(title);
 		setAllowMultiUse(true);
