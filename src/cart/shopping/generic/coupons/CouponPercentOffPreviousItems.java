@@ -7,15 +7,25 @@ import cart.shopping.generic.cart.ICartItem;
 
 public class CouponPercentOffPreviousItems extends AbstractCoupon {
 
-	public CouponPercentOffPreviousItems(String title) {
+	// region: Instance Variables
+	// region: Class Initializers
+	private CouponPercentOffPreviousItems(String title) {
 		super(title);
 		// TODO Report Bug
 	}
+	
+	public static AbstractCoupon instance(String title) {
+		
+		CouponPercentOffPreviousItems coupon = new CouponPercentOffPreviousItems(title);
+		return coupon;
+	}
 
+	// region: Getters and Setters
+	// region: Overridden Methods
 	@Override
 	public UUID getCouponID() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return UUID.fromString("cbfafd99-7095-4ccc-97e9-e530872df046");
 	}
 
 	@Override
