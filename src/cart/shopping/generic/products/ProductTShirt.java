@@ -2,8 +2,15 @@ package cart.shopping.generic.products;
 
 public class ProductTShirt extends AbstractProduct {
 
-	public ProductTShirt(float cost, String title) {
+	// region: Class Initializers
+	private ProductTShirt(float cost, String title) {
 		super(cost, title);
+	}
+	
+	public static AbstractProduct instance(float cost, String title) {
+		
+		ProductTShirt product = new ProductTShirt(cost, title);
+		return product;
 	}
 
 }
