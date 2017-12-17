@@ -25,6 +25,17 @@ public class UserInterface {
 
 		shoppingCart.addCartItem(EntrustTestProjectDictionary.percentTenOffPreviousItems);
 		System.out.println(String.format("Cart Total: %.2f | Applied Coupon 10%% off previous items", shoppingCart.getCartTotal()));
+
+		shoppingCart.addCartItem(EntrustTestProjectDictionary.dollarsSeventyFiveOffOnFifthJacket);
+		shoppingCart.addCartItem(EntrustTestProjectDictionary.dollarsSeventyFiveOffOnFifthJacket);
+		System.out.println(String.format("Cart Total: %.2f | Applied Coupon 2x $75 off 5th Jacket", shoppingCart.getCartTotal()));
+
+		shoppingCart.addCartItem(EntrustTestProjectDictionary.jacketRaynolds);
+		shoppingCart.addCartItem(EntrustTestProjectDictionary.jacketRaynolds);
+		System.out.println(String.format("Cart Total: %.2f | Added 2x Jackets", shoppingCart.getCartTotal()));
+
+		shoppingCart.addCartItem(EntrustTestProjectDictionary.jacketRaynolds);
+		System.out.println(String.format("Cart Total: %.2f | Added 1x Jackets", shoppingCart.getCartTotal()));
 	}
 
 }
