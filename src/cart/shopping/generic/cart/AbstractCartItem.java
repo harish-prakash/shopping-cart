@@ -4,12 +4,14 @@ public abstract class AbstractCartItem {
 
 	private AbstractCartItem previousCartItem;
 	private AbstractCartItem nextCartItem;
-	
+
+	//region: Class Initializer
 	protected AbstractCartItem() {
 		previousCartItem = null;
 		nextCartItem = null;
 	}
 
+	//region: Getters and Setters
 	public final AbstractCartItem getNextCartItem() {
 		return nextCartItem;
 	}

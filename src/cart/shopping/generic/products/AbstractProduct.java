@@ -18,6 +18,7 @@ public abstract class AbstractProduct extends AbstractCartItem {
 	private float reducedCost;
 	private ArrayList<AbstractCoupon> appliedCoupons;
 	
+	//region: Class Initializers
 	protected AbstractProduct(float cost, String title) {
 		
 		this.cost = cost;
@@ -28,6 +29,7 @@ public abstract class AbstractProduct extends AbstractCartItem {
 		this.appliedCoupons = new ArrayList<AbstractCoupon>();		
 	}
 	
+	//region: Getters and setters
 	public float getCost() {
 		return cost;
 	}

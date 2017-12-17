@@ -11,14 +11,14 @@ public abstract class AbstractCoupon extends AbstractCartItem {
 
 	private String title;
 	private boolean allowMultiUse;
-
+	
+	//region: Class Initializers
 	protected AbstractCoupon(String title) {
 
 		this.title = title;
 	}
-
-	public abstract UUID getCouponID();
-
+	
+	//region: Getters and Setters 
 	public String getTitle() {
 		return title;
 	}
@@ -35,6 +35,7 @@ public abstract class AbstractCoupon extends AbstractCartItem {
 		this.allowMultiUse = reusable;
 	}
 
+	//region: Utility methods
 	public final boolean isEqual(AbstractCoupon coupon) {
 		return getCouponID().compareTo(coupon.getCouponID()) == 0; // TODO consider "final"ing
 	}
@@ -58,6 +59,9 @@ public abstract class AbstractCoupon extends AbstractCartItem {
 
 		applyCoupon(firstItem, cartProducts, cartCoupons);
 	}
+
+	//region: Abstract methods
+	public abstract UUID getCouponID();
 
 	public abstract void applyCoupon(AbstractCartItem firstItem, List<AbstractProduct> cartProducts, List<AbstractCoupon> cartCoupons);
 
