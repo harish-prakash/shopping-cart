@@ -8,98 +8,21 @@ import cart.shopping.generic.products.AbstractProduct;
 
 public class Cart {
 
-	private AbstractCartItem firstItem;
-	private AbstractCartItem lastItem;
+	// region: Instance variables	
+	private ICartItem firstItem;
+	private ICartItem lastItem;
 
-	private ArrayList<AbstractProduct> cartProducts;
-	private ArrayList<AbstractCoupon> cartCoupons;
-
+	private ArrayList<CartProductWrapper> cartProducts;
+	private ArrayList<CartCouponWrapper> cartCoupons;
+	
+	// region: Class Initializers
 	private Cart() {
 
 		this.firstItem = null;
 		this.lastItem = null;
 
-		this.cartProducts = new ArrayList<AbstractProduct>();
-		this.cartCoupons = new ArrayList<AbstractCoupon>();
-	}
-
-	public AbstractCartItem getFirstItem() {
-		return firstItem;
-	}
-
-	private void setFirstItem(AbstractCartItem firstItem) {
-		this.firstItem = firstItem;
-	}
-
-	private AbstractCartItem getLastItem() {
-		return lastItem;
-	}
-
-	private void setLastItem(AbstractCartItem lastItem) {
-		this.lastItem = lastItem;
-	}
-
-	public void addCartItems(AbstractCartItem item) {
-
-		if (item == null)
-			return;
-
-		if (getFirstItem() == null) {
-			setFirstItem(item);
-			setLastItem(item);
-		}
-
-		else {
-			getLastItem().setNextCartItem(item);
-			item.setPreviousCartItem(getLastItem());
-			setLastItem(item);
-		}
-
-		if (item instanceof AbstractProduct)
-			addProduct((AbstractProduct) item);
-		else
-			addCoupon((AbstractCoupon) item);
-	}
-
-	public void addCartItems(List<AbstractCartItem> items) {
-		for (AbstractCartItem item : items)
-			addCartItems(item);
-	}
-
-	private void addProduct(AbstractProduct product) {
-		this.cartProducts.add(product);
-	}
-
-	private void addCoupon(AbstractCoupon coupon) {
-		this.cartCoupons.add(coupon);
-	}
-
-	public List<AbstractProduct> getProducts() {
-
-		for (AbstractProduct product : cartProducts) {
-			product.resetReducedCostAndCoupons();
-		}
-
-		for (AbstractCoupon coupon : getCoupons()) {
-			coupon.validateAndApplyCoupon(getFirstItem(), cartProducts, getCoupons());
-		}
-
-		return cartProducts;
-	}
-
-	public List<AbstractCoupon> getCoupons() {
-		return cartCoupons;
-	}
-
-	public float getCartTotal() {
-
-		float total = 0;
-
-		for (AbstractProduct product : getProducts()) {
-			total += product.getReducedCost();
-		}
-
-		return total;
+		this.cartProducts = new ArrayList<CartProductWrapper>();
+		this.cartCoupons = new ArrayList<CartCouponWrapper>();
 	}
 
 	public static Cart initialize() {
@@ -107,4 +30,84 @@ public class Cart {
 		return cart;
 	}
 
+	// region: Getters and setters	
+	public ICartItem getFirstItem() {
+		return firstItem;
+	}
+
+	private void setFirstItem(ICartItem firstItem) {
+		this.firstItem = firstItem;
+	}
+
+	private ICartItem getLastItem() {
+		return lastItem;
+	}
+
+	private void setLastItem(ICartItem lastItem) {
+		this.lastItem = lastItem;
+	}
+
+	public List<CartCouponWrapper> getCoupons() {
+		return cartCoupons;
+	}
+
+	// region: Utility Methods
+	private void addProduct(CartProductWrapper product) {
+		this.cartProducts.add(product);
+	}
+
+	private void addCoupon(CartCouponWrapper coupon) {
+		this.cartCoupons.add(coupon);
+	}
+
+	public List<CartProductWrapper> getProducts() {
+
+		for (CartProductWrapper product : cartProducts) {
+			product.resetDiscounts();
+		}
+
+		for (CartCouponWrapper coupon : getCoupons()) {
+			coupon.validateAndApply(this);
+		}
+
+		return cartProducts;
+	}
+	
+	public float getCartTotal() {
+
+		float total = 0;
+
+		for (CartProductWrapper product : getProducts()) {
+			total += product.getReducedCost();
+		}
+
+		return total;
+	}
+
+	public void addCartItem(AbstractProduct product) {
+		CartProductWrapper Product = CartProductWrapper.wrap(product);
+		addProduct(Product);
+		addCartItem(Product);
+	}
+	
+	public void addCartItem(AbstractCoupon coupon) {
+		
+		CartCouponWrapper Coupon = CartCouponWrapper.wrap(coupon);
+		addCoupon(Coupon);
+		addCartItem(Coupon);
+	}
+	
+	private void addCartItem (ICartItem cartItem) {
+		
+		if (getFirstItem() == null) {
+			setFirstItem(cartItem);
+			setLastItem(cartItem);
+		}
+		
+		else {
+			cartItem.setPreviousCartItem(getLastItem());
+			getLastItem().setNextCartItem(cartItem);
+			setLastItem(cartItem);
+		}
+	}
 }

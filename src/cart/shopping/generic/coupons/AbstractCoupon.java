@@ -1,13 +1,13 @@
 package cart.shopping.generic.coupons;
 
-import java.util.List;
 import java.util.UUID;
 
-import cart.shopping.generic.cart.AbstractCartItem;
+import cart.shopping.generic.cart.Cart;
+import cart.shopping.generic.cart.CartCouponWrapper;
+import cart.shopping.generic.cart.ICartItem;
 import cart.shopping.generic.exceptions.ShoppingCartException;
-import cart.shopping.generic.products.AbstractProduct;
 
-public abstract class AbstractCoupon extends AbstractCartItem {
+public abstract class AbstractCoupon {
 
 	private String title;
 	private boolean allowMultiUse;
@@ -40,29 +40,29 @@ public abstract class AbstractCoupon extends AbstractCartItem {
 		return getCouponID().compareTo(coupon.getCouponID()) == 0; // TODO consider "final"ing
 	}
 
-	public final void validateAndApplyCoupon(AbstractCartItem firstItem, List<AbstractProduct> cartProducts, List<AbstractCoupon> cartCoupons) {
+	public final void validateAndApply(Cart targetCart, ICartItem cartCouponInstance) {
 
 		// Validate coupon re-use
 		if (!getAllowMultiUse()) {
 
 			int countCouponUse = 0;
-			for (AbstractCoupon coupon : cartCoupons) {
+			for (CartCouponWrapper couponInCart : targetCart.getCoupons()) {
 
-				if (isEqual(coupon))
+				if (this.isEqual(couponInCart.getCoupon()))
 					countCouponUse++;
 			}
 
 			if (countCouponUse > 1) {
-				throw new ShoppingCartException("Jeans Three for two coupon cannot be used more than once");
+				throw new ShoppingCartException(String.format("\"%s\" coupon cannot be used more than once on the same cart", getTitle()));
 			}
 		}
 
-		applyCoupon(firstItem, cartProducts, cartCoupons);
+		applyCoupon(targetCart, cartCouponInstance);
 	}
 
 	//region: Abstract methods
 	public abstract UUID getCouponID();
 
-	public abstract void applyCoupon(AbstractCartItem firstItem, List<AbstractProduct> cartProducts, List<AbstractCoupon> cartCoupons);
+	public abstract void applyCoupon(Cart targetCart, ICartItem cartCouponInstance);
 
 }

@@ -1,13 +1,8 @@
 package cart.shopping.generic.products;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import cart.shopping.generic.cart.AbstractCartItem;
-import cart.shopping.generic.coupons.AbstractCoupon;
-
-public abstract class AbstractProduct extends AbstractCartItem {
+public abstract class AbstractProduct {
 	
 	protected float cost;
 	protected String title;
@@ -15,18 +10,13 @@ public abstract class AbstractProduct extends AbstractCartItem {
 	protected String manufacturer;
 	protected HashMap<String, String> otherInformation;
 	
-	private float reducedCost;
-	private ArrayList<AbstractCoupon> appliedCoupons;
-	
 	//region: Class Initializers
 	protected AbstractProduct(float cost, String title) {
 		
 		this.cost = cost;
-		this.reducedCost = cost;
 		this.title = title;
 		
-		this.otherInformation = new HashMap<String, String>();
-		this.appliedCoupons = new ArrayList<AbstractCoupon>();		
+		this.otherInformation = new HashMap<String, String>();		
 	}
 	
 	//region: Getters and setters
@@ -60,26 +50,5 @@ public abstract class AbstractProduct extends AbstractCartItem {
 	
 	public String setInformation(String label, String details) {
 		return otherInformation.put(label, details);
-	}
-	
-	public final float getReducedCost() {
-		return reducedCost;
-	}
-	
-	public final void setReducedCost(float cost) {
-		this.reducedCost = cost;
-	}
-	
-	public final void resetReducedCostAndCoupons() {
-		this.reducedCost = this.cost;
-		this.appliedCoupons.clear();
-	}
-	
-	public final void addAppliedCoupon(AbstractCoupon coupon) {
-		this.appliedCoupons.add(coupon);
-	}
-	
-	public final List<AbstractCoupon> getAppliedCoupons() {
-		return this.appliedCoupons;
 	}
 }
