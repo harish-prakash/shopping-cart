@@ -11,7 +11,7 @@ public class CouponPercentOffNthItemOfType_Strict extends AbstractCoupon {
 	// region: Class Initializers
 	private CouponPercentOffNthItemOfType_Strict(String title) {
 		super(title);
-		// TODO Report bug
+		// TODO Report Bug
 	}
 	
 	public static AbstractCoupon instance(String title) {
@@ -25,7 +25,7 @@ public class CouponPercentOffNthItemOfType_Strict extends AbstractCoupon {
 	@Override
 	public UUID getCouponID() {
 
-		return UUID.fromString("19b494d8-e37a-11e7-80c1-9a214cf093ae");
+		return UUID.fromString("cbfafd99-7095-4ccc-97e9-e530872df046");
 	}
 
 	@Override
