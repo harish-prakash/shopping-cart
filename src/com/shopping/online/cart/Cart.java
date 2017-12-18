@@ -64,20 +64,25 @@ public class Cart {
 	}
 
 	// region: Utility Methods
+
+	// Manage Products list
 	private void addProduct(CartProductWrapper product) {
 		this.cartProducts.add(product);
 	}
 
+	// Manage Coupons list
 	private void addCoupon(CartCouponWrapper coupon) {
 		this.cartCoupons.add(coupon);
 	}
 
+	// Add product to products list and cart ledger
 	public void addCartItem(AbstractProduct product) {
 		CartProductWrapper Product = CartProductWrapper.wrap(product);
 		addProduct(Product);
 		addCartItem(Product);
 	}
 
+	// Add coupon to coupons list and cart ledger
 	public void addCartItem(AbstractCoupon coupon) {
 
 		CartCouponWrapper Coupon = CartCouponWrapper.wrap(coupon);
@@ -85,6 +90,8 @@ public class Cart {
 		addCartItem(Coupon);
 	}
 
+	// Cart ledger is the backbone of this application.
+	// It maintains the sequence of inclusion allowing complex coupon logic.
 	private void addCartItem(ICartItem cartItem) {
 
 		if (getFirstItem() == null) {
@@ -97,7 +104,7 @@ public class Cart {
 			getLastItem().setNextCartItem(cartItem);
 			setLastItem(cartItem);
 		}
-		
+
 		processCart();
 	}
 
@@ -110,12 +117,12 @@ public class Cart {
 		for (CartCouponWrapper coupon : getCoupons()) {
 			coupon.validateAndApply(this);
 		}
-		
+
 		float total = 0;
-		for(CartProductWrapper product : getProducts()) {
+		for (CartProductWrapper product : getProducts()) {
 			total += product.getReducedCost();
 		}
-		
+
 		setCartTotal(total);
 	}
 
