@@ -3,10 +3,10 @@
 - Coupon types will change in the future.
 
 # Design Decisions
-- Cart Ledger - Stores products and coupons preserving the sequence of addition
-- Inversion of Control (IoC) - Evolving nature of coupons can benefit with IoC. The coupons operate on the ledger instead of the ledger operating with the coupons.
-- Separation of Concerns (SoC) - Isolate code areas to simplify design and testing
-- Abstraction and Fascade pattern
+- **Cart Ledger** Stores products and coupons preserving the sequence of addition
+- **Inversion of Control (IoC)** Evolving nature of coupons can benefit from IoC. Coupons operate on the ledger instead of the ledger operating on Coupons.
+- **Separation of Concerns (SoC)** Isolate code areas to simplify design and testing
+- **Abstraction and Fascade pattern**
 
 # Case study
 Research different types of coupons, interview (pro) shoppers and find a list of coupon types.
