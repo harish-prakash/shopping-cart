@@ -3,6 +3,7 @@ package com.shopping.online.tests;
 import com.shopping.online.coupons.AbstractCoupon;
 import com.shopping.online.coupons.CouponDollarsOffNthItemOfType_Strict;
 import com.shopping.online.coupons.CouponPercentOffAllItems;
+import com.shopping.online.coupons.CouponPercentOffItemTypeWhenCartTotalExceeds;
 import com.shopping.online.coupons.CouponPercentOffNextItem;
 import com.shopping.online.coupons.CouponPercentOffNthItemOfType;
 import com.shopping.online.coupons.CouponPercentOffPreviousItems;
@@ -22,5 +23,5 @@ public class ProductsAndCouponsDictionary {
 	public static AbstractCoupon percentTenOffSecondJacket = CouponPercentOffNthItemOfType.instance("10% off every fifth Jacket", ProductJacket.class, 10, 2, true);
 	public static AbstractCoupon freeFifthJacket = CouponPercentOffNthItemOfType.instance("Buy 4 jackets and get one free", ProductJacket.class, 100, 5, true);
 	public static AbstractCoupon dollarsSeventyFiveOffOnFifthJacket = CouponDollarsOffNthItemOfType_Strict.instance("$75 Off on fifth Jacket", ProductJacket.class, 5, 75);
-	
+	public static AbstractCoupon freeTShirtIfCartTotalOverTwoHundred = CouponPercentOffItemTypeWhenCartTotalExceeds.instance("Get a free T-shirt when cart total exceeds $200", ProductTShirt.class, 100, 200);	
 }

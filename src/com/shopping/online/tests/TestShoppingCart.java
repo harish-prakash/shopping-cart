@@ -94,5 +94,35 @@ class TestShoppingCart {
 		shoppingCart.addCartItem(ProductsAndCouponsDictionary.jacketRaynolds);
 		assertEquals(570, shoppingCart.getCartTotal());
 	}
+	
+	@Test
+	final void TestCase_CouponsBasedOnCartTotal() {
+		
+		Cart shoppingCart = Cart.initialize();
+		
+		// Add 1x Jacket worth $100 | $100
+		shoppingCart.addCartItem(ProductsAndCouponsDictionary.jacketRaynolds);
+		assertEquals(100, shoppingCart.getCartTotal());
+		
+		// Add 1x Jacket worth $100 | $100 + $100 = $200
+		shoppingCart.addCartItem(ProductsAndCouponsDictionary.jacketRaynolds);
+		assertEquals(200, shoppingCart.getCartTotal());
+		
+		// Apply coupon that allows one free T-Shirt when cart total exceeds $200 | $200
+		shoppingCart.addCartItem(ProductsAndCouponsDictionary.freeTShirtIfCartTotalOverTwoHundred);
+		assertEquals(200, shoppingCart.getCartTotal());
+		
+		// Add 1x Bracelet worth $10 | $200 + $10 = $210
+		shoppingCart.addCartItem(ProductsAndCouponsDictionary.braceletTitan);
+		assertEquals(210, shoppingCart.getCartTotal());
+		
+		// Add 1x T-shirt worth $20. The coupon kicks in, no change | $210
+		shoppingCart.addCartItem(ProductsAndCouponsDictionary.tshirtOldNavy);
+		assertEquals(210, shoppingCart.getCartTotal());
+		
+		// Add 1x T-shirt worth $20 | $210 + $20 = $230
+		shoppingCart.addCartItem(ProductsAndCouponsDictionary.tshirtOldNavy);
+		assertEquals(230, shoppingCart.getCartTotal());
+	}
 
 }

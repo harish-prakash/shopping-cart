@@ -8,13 +8,14 @@ import com.shopping.online.products.AbstractProduct;
 
 public class Cart {
 
-	// region: Instance variables	
+	// region: Instance variables
 	private ICartItem firstItem;
 	private ICartItem lastItem;
+	private float cartTotal;
 
 	private ArrayList<CartProductWrapper> cartProducts;
 	private ArrayList<CartCouponWrapper> cartCoupons;
-	
+
 	// region: Class Initializers
 	private Cart() {
 
@@ -29,7 +30,7 @@ public class Cart {
 		return cart;
 	}
 
-	// region: Getters and setters	
+	// region: Getters and setters
 	public ICartItem getFirstItem() {
 		return firstItem;
 	}
@@ -46,8 +47,20 @@ public class Cart {
 		this.lastItem = lastItem;
 	}
 
+	public float getCartTotal() {
+		return cartTotal;
+	}
+
+	private void setCartTotal(float cartTotal) {
+		this.cartTotal = cartTotal;
+	}
+
 	public List<CartCouponWrapper> getCoupons() {
 		return cartCoupons;
+	}
+
+	public List<CartProductWrapper> getProducts() {
+		return cartProducts;
 	}
 
 	// region: Utility Methods
@@ -59,55 +72,51 @@ public class Cart {
 		this.cartCoupons.add(coupon);
 	}
 
-	public List<CartProductWrapper> getProducts() {
+	public void addCartItem(AbstractProduct product) {
+		CartProductWrapper Product = CartProductWrapper.wrap(product);
+		addProduct(Product);
+		addCartItem(Product);
+	}
 
-		for (CartProductWrapper product : cartProducts) {
+	public void addCartItem(AbstractCoupon coupon) {
+
+		CartCouponWrapper Coupon = CartCouponWrapper.wrap(coupon);
+		addCoupon(Coupon);
+		addCartItem(Coupon);
+	}
+
+	private void addCartItem(ICartItem cartItem) {
+
+		if (getFirstItem() == null) {
+			setFirstItem(cartItem);
+			setLastItem(cartItem);
+		}
+
+		else {
+			cartItem.setPreviousCartItem(getLastItem());
+			getLastItem().setNextCartItem(cartItem);
+			setLastItem(cartItem);
+		}
+		
+		processCart();
+	}
+
+	private void processCart() {
+
+		for (CartProductWrapper product : getProducts()) {
 			product.resetDiscounts();
 		}
 
 		for (CartCouponWrapper coupon : getCoupons()) {
 			coupon.validateAndApply(this);
 		}
-
-		return cartProducts;
-	}
-	
-	public float getCartTotal() {
-
+		
 		float total = 0;
-
-		for (CartProductWrapper product : getProducts()) {
+		for(CartProductWrapper product : getProducts()) {
 			total += product.getReducedCost();
 		}
-
-		return total;
-	}
-
-	public void addCartItem(AbstractProduct product) {
-		CartProductWrapper Product = CartProductWrapper.wrap(product);
-		addProduct(Product);
-		addCartItem(Product);
-	}
-	
-	public void addCartItem(AbstractCoupon coupon) {
 		
-		CartCouponWrapper Coupon = CartCouponWrapper.wrap(coupon);
-		addCoupon(Coupon);
-		addCartItem(Coupon);
-	}
-	
-	private void addCartItem (ICartItem cartItem) {
-		
-		if (getFirstItem() == null) {
-			setFirstItem(cartItem);
-			setLastItem(cartItem);
-		}
-		
-		else {
-			cartItem.setPreviousCartItem(getLastItem());
-			getLastItem().setNextCartItem(cartItem);
-			setLastItem(cartItem);
-		}
+		setCartTotal(total);
 	}
 
 	public void clear() {

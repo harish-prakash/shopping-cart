@@ -1,7 +1,7 @@
 # Design Objectives
 - Store chronologic information
 
-# Design Deicisions
+# Design Decisions
 - Cart Ledger
 - Inversion of Control (IoC)
 - Separation of Concerns (SoC)
