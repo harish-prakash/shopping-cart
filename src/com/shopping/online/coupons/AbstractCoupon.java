@@ -1,11 +1,11 @@
-package cart.shopping.generic.coupons;
+package com.shopping.online.coupons;
 
 import java.util.UUID;
 
-import cart.shopping.generic.cart.Cart;
-import cart.shopping.generic.cart.CartCouponWrapper;
-import cart.shopping.generic.cart.ICartItem;
-import cart.shopping.generic.exceptions.ShoppingCartException;
+import com.shopping.online.cart.Cart;
+import com.shopping.online.cart.CartCouponWrapper;
+import com.shopping.online.cart.ICartItem;
+import com.shopping.online.exceptions.ShoppingCartException;
 
 public abstract class AbstractCoupon {
 

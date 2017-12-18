@@ -1,10 +1,10 @@
-package cart.shopping.generic.coupons;
+package com.shopping.online.coupons;
 
 import java.util.UUID;
 
-import cart.shopping.generic.cart.Cart;
-import cart.shopping.generic.cart.CartProductWrapper;
-import cart.shopping.generic.cart.ICartItem;
+import com.shopping.online.cart.Cart;
+import com.shopping.online.cart.CartProductWrapper;
+import com.shopping.online.cart.ICartItem;
 
 public class CouponPercentOffAllItems extends AbstractCoupon {
 

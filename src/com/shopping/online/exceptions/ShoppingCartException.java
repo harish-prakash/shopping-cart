@@ -1,4 +1,4 @@
-package cart.shopping.generic.exceptions;
+package com.shopping.online.exceptions;
 
 public class ShoppingCartException extends UnsupportedOperationException {
 

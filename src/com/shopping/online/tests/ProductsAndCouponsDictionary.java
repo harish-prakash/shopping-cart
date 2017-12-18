@@ -1,15 +1,15 @@
-package cart.shopping.generic.tests;
+package com.shopping.online.tests;
 
-import cart.shopping.generic.coupons.AbstractCoupon;
-import cart.shopping.generic.coupons.CouponPercentOffNextItem;
-import cart.shopping.generic.coupons.CouponPercentOffNthItemOfType;
-import cart.shopping.generic.coupons.CouponDollarsOffNthItemOfType_Strict;
-import cart.shopping.generic.coupons.CouponPercentOffAllItems;
-import cart.shopping.generic.coupons.CouponPercentOffPreviousItems;
-import cart.shopping.generic.products.AbstractProduct;
-import cart.shopping.generic.products.ProductBracelet;
-import cart.shopping.generic.products.ProductJacket;
-import cart.shopping.generic.products.ProductTShirt;
+import com.shopping.online.coupons.AbstractCoupon;
+import com.shopping.online.coupons.CouponDollarsOffNthItemOfType_Strict;
+import com.shopping.online.coupons.CouponPercentOffAllItems;
+import com.shopping.online.coupons.CouponPercentOffNextItem;
+import com.shopping.online.coupons.CouponPercentOffNthItemOfType;
+import com.shopping.online.coupons.CouponPercentOffPreviousItems;
+import com.shopping.online.products.AbstractProduct;
+import com.shopping.online.products.ProductBracelet;
+import com.shopping.online.products.ProductJacket;
+import com.shopping.online.products.ProductTShirt;
 
 public class ProductsAndCouponsDictionary {
 

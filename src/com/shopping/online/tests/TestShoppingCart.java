@@ -1,10 +1,10 @@
-package cart.shopping.generic.tests;
+package com.shopping.online.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import cart.shopping.generic.cart.Cart;
+import com.shopping.online.cart.Cart;
 
 class TestShoppingCart {
 

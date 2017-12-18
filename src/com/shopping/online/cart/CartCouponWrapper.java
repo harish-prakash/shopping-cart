@@ -1,6 +1,6 @@
-package cart.shopping.generic.cart;
+package com.shopping.online.cart;
 
-import cart.shopping.generic.coupons.AbstractCoupon;
+import com.shopping.online.coupons.AbstractCoupon;
 
 public class CartCouponWrapper implements ICartItem {
 

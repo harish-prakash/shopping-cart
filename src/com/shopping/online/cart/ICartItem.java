@@ -1,4 +1,4 @@
-package cart.shopping.generic.cart;
+package com.shopping.online.cart;
 
 public interface ICartItem {
 

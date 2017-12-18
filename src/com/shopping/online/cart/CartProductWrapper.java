@@ -1,10 +1,10 @@
-package cart.shopping.generic.cart;
+package com.shopping.online.cart;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cart.shopping.generic.coupons.AbstractCoupon;
-import cart.shopping.generic.products.AbstractProduct;
+import com.shopping.online.coupons.AbstractCoupon;
+import com.shopping.online.products.AbstractProduct;
 
 public class CartProductWrapper implements ICartItem {
 

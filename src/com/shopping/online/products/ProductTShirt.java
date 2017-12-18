@@ -1,4 +1,4 @@
-package cart.shopping.generic.products;
+package com.shopping.online.products;
 
 public class ProductTShirt extends AbstractProduct {
 
