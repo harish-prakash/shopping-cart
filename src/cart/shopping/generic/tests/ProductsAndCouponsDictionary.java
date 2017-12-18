@@ -1,4 +1,4 @@
-package cart.shopping.generic;
+package cart.shopping.generic.tests;
 
 import cart.shopping.generic.coupons.AbstractCoupon;
 import cart.shopping.generic.coupons.CouponPercentOffNextItem;
@@ -11,7 +11,7 @@ import cart.shopping.generic.products.ProductBracelet;
 import cart.shopping.generic.products.ProductJacket;
 import cart.shopping.generic.products.ProductTShirt;
 
-public class EntrustTestProjectDictionary {
+public class ProductsAndCouponsDictionary {
 
 	public static AbstractProduct jacketRaynolds = ProductJacket.instance(100, "Raynolds Premium");
 	public static AbstractProduct tshirtOldNavy = ProductTShirt.instance(20, "Old Navy Classic");

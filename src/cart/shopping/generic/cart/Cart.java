@@ -18,8 +18,7 @@ public class Cart {
 	// region: Class Initializers
 	private Cart() {
 
-		this.firstItem = null;
-		this.lastItem = null;
+		this.clear();
 
 		this.cartProducts = new ArrayList<CartProductWrapper>();
 		this.cartCoupons = new ArrayList<CartCouponWrapper>();
@@ -109,5 +108,10 @@ public class Cart {
 			getLastItem().setNextCartItem(cartItem);
 			setLastItem(cartItem);
 		}
+	}
+
+	public void clear() {
+		setFirstItem(null);
+		setLastItem(null);
 	}
 }
