@@ -40,6 +40,7 @@ public abstract class AbstractCoupon {
 		return getCouponID().compareTo(coupon.getCouponID()) == 0; // TODO consider "final"ing
 	}
 
+	// validate common coupon properties
 	public final void validateAndApply(Cart targetCart, ICartItem cartCouponInstance) {
 
 		// Validate coupon re-use
@@ -61,8 +62,10 @@ public abstract class AbstractCoupon {
 	}
 
 	//region: Abstract methods
+	// Use coupon ID to identify similar coupons
 	public abstract UUID getCouponID();
 
+	// Apply coupon logic
 	public abstract void applyCoupon(Cart targetCart, ICartItem cartCouponInstance);
 
 }
