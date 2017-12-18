@@ -52,6 +52,7 @@ public class CouponPercentOffAllItems extends AbstractCoupon {
 				
 				reducedCost *= 1 - getDiscountPercent()/100;
 				Product.setReducedCost(reducedCost);
+				Product.tagAppliedCoupon(this);
 			}
 
 			cartItem = cartItem.getNextCartItem();

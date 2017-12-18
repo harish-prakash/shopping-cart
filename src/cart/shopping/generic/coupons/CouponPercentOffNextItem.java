@@ -51,6 +51,7 @@ public class CouponPercentOffNextItem extends AbstractCoupon {
 				
 				reducedCost *= 1 - getDiscountPercent()/100;
 				Product.setReducedCost(reducedCost);
+				Product.tagAppliedCoupon(this);
 				break;
 			}
 			

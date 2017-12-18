@@ -74,6 +74,7 @@ public class CouponPercentOffNthItemOfType extends AbstractCoupon {
 
 						reducedCost *= 1 - getDiscountPercent() / 100;
 						Product.setReducedCost(reducedCost);
+						Product.tagAppliedCoupon(this);
 					}
 				}
 			} catch (java.lang.ClassCastException ex) {

@@ -83,6 +83,7 @@ public class CouponDollarsOffNthItemOfType_Strict extends AbstractCoupon {
 						reducedCost -= getDiscountDollars();
 						
 						Product.setReducedCost(reducedCost);
+						Product.tagAppliedCoupon(this);
 						break;
 					}
 				}
