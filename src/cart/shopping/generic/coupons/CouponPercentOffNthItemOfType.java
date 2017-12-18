@@ -14,11 +14,18 @@ public class CouponPercentOffNthItemOfType extends AbstractCoupon {
 	private int threshold;
 
 	// region: Class Initializers
-	private CouponPercentOffNthItemOfType(String title, Class<?> productType, float discountPercent, int threshold) {
+	private CouponPercentOffNthItemOfType(String title, Class<?> productType, float discountPercent, int threshold, boolean allowReuse) {
 		super(title);
 		setProductType(productType);
 		setDiscountPercent(discountPercent);
 		setThreshold(threshold);
+		setAllowMultiUse(allowReuse);
+	}
+	
+	public static AbstractCoupon instance(String title, Class<?> productType, float discountPercent, int threshold, boolean allowReuse) {
+		
+		CouponPercentOffNthItemOfType coupon = new CouponPercentOffNthItemOfType(title, productType, discountPercent, threshold, allowReuse);
+		return coupon;
 	}
 
 	// region: Getters and Setters

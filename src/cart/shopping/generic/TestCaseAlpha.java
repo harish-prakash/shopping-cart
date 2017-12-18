@@ -2,7 +2,7 @@ package cart.shopping.generic;
 
 import cart.shopping.generic.cart.Cart;
 
-public class UserInterface {
+public class TestCaseAlpha {
 	
 	public static void main(String[] args) {
 		
