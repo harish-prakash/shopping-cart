@@ -27,3 +27,6 @@ These are other coupon types which can be effortlessly implemented in the curren
 
 # Next Iteration
 The current version applies coupons on products. There may be situations where a coupon is applied on the entire cart or on product groups. Although, this result is achivable in the current version, the solution will be inefficient. Ideally, create ecapsulations called 'Product Group' and implement an interface called 'IDiscountable'. Implement the interface on the 'Cart' and 'Porduct Group'. This opens the door to more degrees of flexibility, e.g. Buy 3 for $6 (my personal favorite at Walmart).
+
+# Changelog
+- 2018-01-28 - Add changelog
